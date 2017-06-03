@@ -6,7 +6,8 @@ import ArtistInformation from './artist_information';
 import SearchBar from './search_bar';
 
 var access_token;
-const api_url = "https://accounts.spotify.com/authorize?client_id=97f162d3fb7940b9bc87ac13b118a406&response_type=token&redirect_uri=http:%2F%2Flocalhost:3000%2F";
+var callback_url = window.location.href;
+const api_url = "https://accounts.spotify.com/authorize?client_id=97f162d3fb7940b9bc87ac13b118a406&response_type=token&redirect_uri="+callback_url;
 
 class App extends Component{
     constructor(props){
