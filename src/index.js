@@ -39,7 +39,7 @@ class App extends Component{
             console.log("current_artist",this.state.current_artist);
         });
 
-        spotifyApi.getArtistAlbums('3dRfiJ2650SZu6GbydcHNb', (err, data) => {
+        spotifyApi.getArtistAlbums('3dRfiJ2650SZu6GbydcHNb',{album_type: 'album', limit: 50, market: 'BR'}, (err, data) => {
             if(err){
                 console.log(err);
                 window.location.replace(api_url);
