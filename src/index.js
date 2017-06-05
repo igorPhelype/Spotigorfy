@@ -8,11 +8,12 @@ import SearchBar from './search_bar';
 var access_token;
 var callback_url = window.location.href;
 const api_url = "https://accounts.spotify.com/authorize?client_id=97f162d3fb7940b9bc87ac13b118a406&response_type=token&redirect_uri="+callback_url;
+//var albums_offset = 0;
 
 class App extends Component{
     constructor(props){
         super(props);
-        this.state = {current_artist: [], albums: []};
+        this.state = {current_artist: [], albums: [], artist_image_url: ""};
         var hash;
     //if the hash isnt initialised, replace the location to the api.
         if(!window.location.hash){
@@ -36,7 +37,8 @@ class App extends Component{
                 window.location.replace(api_url);
             }
             this.setState({current_artist: data});
-            console.log("current_artist",this.state.current_artist);
+            this.setState({artist_image_url: data.images[0].url});
+            console.log("Image_href: ", data.images[0].url);
         });
 
         spotifyApi.getArtistAlbums('3dRfiJ2650SZu6GbydcHNb',{album_type: 'album', limit: 50, market: 'BR'}, (err, data) => {
@@ -52,11 +54,11 @@ class App extends Component{
     }
     render(){
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <nav>
                     <SearchBar/>
                 </nav>
-                <ArtistInformation current_artist={this.state.current_artist}/>
+                <ArtistInformation artist_image_url={this.state.artist_image_url} current_artist={this.state.current_artist}/>
                 <AlbumList albums={this.state.albums}/>
             </div>
         );

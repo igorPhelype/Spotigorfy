@@ -7,7 +7,15 @@ const AlbumList = (props) => {
         return <AlbumListItem key={album.id} album={album}/>
     });
     return (
-        <ul className="col-md-6 list-group">
+        <ul className="col-md-5 list-group">
+            <li className="list-group-item">
+                <div className="media-body">
+                    <div className="media-heading">
+                        <button>Anterior</button>
+                        <button>Proximo</button>
+                    </div>
+                </div>
+            </li>
             <li className="list-group-item">
                 <div className="media-body">
                     <div className="media-heading">
@@ -21,3 +29,6 @@ const AlbumList = (props) => {
 }
 
 export default AlbumList;
+
+//4836
+//4913
