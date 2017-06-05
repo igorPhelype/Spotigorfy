@@ -7,7 +7,7 @@ const AlbumList = (props) => {
         return <AlbumListItem key={album.id} album={album}/>
     });
     return (
-        <ul className="col-md-5 list-group">
+        <ul className="col-md-7 list-group">
             <li className="list-group-item">
                 <div className="media-body">
                     <div className="media-heading">
