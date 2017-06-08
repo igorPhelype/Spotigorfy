@@ -1,30 +1,39 @@
 import React from 'react';
 import AlbumListItem from './album_list_item';
 
-const AlbumList = (props) => {
-    console.log("Props on album_list: ",props);
-    const albumItems = props.albums.map((album)=> {
-        return <AlbumListItem key={album.id} album={album}/>
+const AlbumList = ({albums, onAlbumSelect}) => {
+    const albumItems = albums.map((album)=> {
+        return(
+            <AlbumListItem
+                onAlbumSelect={onAlbumSelect}
+                key={album.id}
+                album={album}
+            />
+        )
     });
     return (
-        <ul className="col-md-7 list-group">
-            <li className="list-group-item">
-                <div className="media-body">
-                    <div className="media-heading">
-                        <button>Anterior</button>
-                        <button>Proximo</button>
+        <div>
+            <ul className="col-md-5 overflow-list">
+                {/*<li className="list-group-item">
+                    <div className="media-body">
+                        <div className="media-heading">
+                            <button>Anterior</button>
+                            <button>Proximo</button>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li className="list-group-item">
-                <div className="media-body">
-                    <div className="media-heading">
-                        Albuns:
+                </li>*/}
+                <li className="">
+                    <div className="media-body">
+                        <div className="media-heading">
+                            <h3>
+                                Albuns:
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </li>
-            {albumItems}
-        </ul>
+                </li>
+                {albumItems}
+            </ul>
+        </div>
     );
 }
 
