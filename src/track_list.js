@@ -8,7 +8,6 @@ class TrackList extends Component{
         this.state = {album_id: props.album_id, album_tracks: [], track_list: []};
         var spotifyApi = new SpotifyWebApi();
         const access_token = props.access_token;
-        console.log("trackList:", props);
         spotifyApi.setAccessToken(access_token);
         spotifyApi.getAlbumTracks(this.state.album_id, {limit: 50, market: 'BR'}, (err, data) =>{
             if(err){

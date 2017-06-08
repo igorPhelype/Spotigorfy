@@ -31,7 +31,6 @@ class App extends Component{
             hash = url.split('#')[1];
             hash = hash.split('&')[0];
             hash = hash.split('=')[1];
-            console.log("Hash: ", hash);
         }
         access_token = hash;
         var spotifyApi = new SpotifyWebApi();
@@ -56,7 +55,6 @@ class App extends Component{
         });
     }
     render(){
-        console.log(this.state.selected_album_id);
         if(!this.state.selected_album_id){
             return(
                 <div>Loading...</div>
@@ -74,6 +72,7 @@ class App extends Component{
                         albums={this.state.albums}
                     />
                     <TrackList
+                        key={this.state.selected_album_id}
                         album_id={this.state.selected_album_id}
                         access_token={access_token}
                     />
