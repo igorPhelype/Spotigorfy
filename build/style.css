@@ -4,3 +4,20 @@
 .listen-link:hover{
     color: #17814a;
 }
+.overflow-list{
+    border: 1px solid lightgrey;
+	border-radius: 5px;
+    overflow: auto;
+    height: 500px;
+    list-style: none;
+}
+.overflow-list li{
+    padding: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+.track-list-item span{
+    color:lightslategray; 
+}
+.artist-information img{
+    
+}
