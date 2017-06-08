@@ -9,6 +9,7 @@ import AlbumList from './album_list';
 import ArtistInformation from './artist_information';
 import SearchBar from './search_bar';
 import TrackList from './track_list';
+import ArtistsSearchList from './artists_search_list';
 
 var access_token;
 var callback_url = window.location.href;
@@ -66,6 +67,7 @@ class App extends Component{
                     <SearchBar/>
                 </nav>
                 <div className="container">
+                    <ArtistsSearchList />
                     <ArtistInformation artist_image_url={this.state.artist_image_url} current_artist={this.state.current_artist}/>
                     <AlbumList 
                         onAlbumSelect={selected_album_id => this.setState({selected_album_id})}

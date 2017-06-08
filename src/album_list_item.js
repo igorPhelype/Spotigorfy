@@ -10,7 +10,7 @@ const AlbumListItem = ({album, onAlbumSelect}) => {
             <div className="media-body">
                 <div className="media-heading album-name">
                     <p>
-                        {album.name} {album.id}
+                        {album.name}
                     </p>
                 </div>
             </div>

@@ -13,7 +13,7 @@ const AlbumList = ({albums, onAlbumSelect}) => {
     });
     return (
         <div>
-            <ul className="col-md-5 overflow-list">
+            <ul className="col-md-4 overflow-list">
                 {/*<li className="list-group-item">
                     <div className="media-body">
                         <div className="media-heading">
