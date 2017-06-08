@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class ArtistsSearchList extends Component{
     constructor(props){
         super(props);
+        console.log("Search List: ", props.artists);
     }
     render(){
         return(

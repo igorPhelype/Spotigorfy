@@ -20,10 +20,35 @@ class App extends Component{
         super(props);
         this.state = {
             current_artist: [],
+            artists: [],
             albums: [],
             artist_image_url: "",
-            selected_album_id: null
+            selected_album_id: null,
+            term: ""
         };
+        // spotifyApi.getArtist('3dRfiJ2650SZu6GbydcHNb', (err, data) => {
+        //     if(err){
+        //         console.log(err);
+        //         window.location.replace(api_url);
+        //     }
+        //     this.setState({current_artist: data});
+        //     this.setState({artist_image_url: data.images[0].url});
+        // });
+        this.artistSearch("Tame Impala");
+        var spotifyApi = this.getSpotifyApi();
+        spotifyApi.getArtistAlbums('3dRfiJ2650SZu6GbydcHNb',{album_type: 'album', limit: 50, market: 'BR'}, (err, data) => {
+            if(err){
+                console.log(err);
+                window.location.replace(api_url);
+            }
+            this.setState({
+                albums: data.items,
+                selected_album_id: data.items[0].id
+            });
+        });
+    }
+
+    getSpotifyApi(){
         var hash;
         if(!window.location.hash){
             window.location.replace(api_url);
@@ -36,25 +61,23 @@ class App extends Component{
         access_token = hash;
         var spotifyApi = new SpotifyWebApi();
         spotifyApi.setAccessToken(access_token);
-        spotifyApi.getArtist('3dRfiJ2650SZu6GbydcHNb', (err, data) => {
-            if(err){
-                console.log(err);
-                window.location.replace(api_url);
-            }
-            this.setState({current_artist: data});
-            this.setState({artist_image_url: data.images[0].url});
-        });
-        spotifyApi.getArtistAlbums('3dRfiJ2650SZu6GbydcHNb',{album_type: 'album', limit: 50, market: 'BR'}, (err, data) => {
-            if(err){
-                console.log(err);
-                window.location.replace(api_url);
-            }
-            this.setState({
-                albums: data.items,
-                selected_album_id: data.items[0].id
-            });
-        });
+        return spotifyApi;
     }
+
+    artistSearch(term){
+        var spotifyApi = this.getSpotifyApi();
+        spotifyApi.searchArtists(term, {limit: '10', type: 'artist'},
+            (err, data) => {
+                if(err){
+                    console.log(err);
+                }
+                this.setState({
+                    artists: data
+                });
+            }
+        );
+    }
+
     render(){
         if(!this.state.selected_album_id){
             return(
@@ -64,10 +87,10 @@ class App extends Component{
         return (
             <div>
                 <nav>
-                    <SearchBar/>
+                    <SearchBar onSearchTermChange={term => this.artistSearch(term)}/>
                 </nav>
                 <div className="container">
-                    <ArtistsSearchList />
+                    <ArtistsSearchList key={this.state.artists} artists={this.state.artists}/>
                     <ArtistInformation artist_image_url={this.state.artist_image_url} current_artist={this.state.current_artist}/>
                     <AlbumList 
                         onAlbumSelect={selected_album_id => this.setState({selected_album_id})}
