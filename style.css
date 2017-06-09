@@ -18,6 +18,12 @@
 .track-list-item span{
     color:lightslategray; 
 }
-.artist-information img{
-    
+.artist-search-list-item{
+    cursor: pointer;
+}
+.artist-search-list-item:hover{
+    background-color: #eee;
+}
+.artist-search-list-item img{
+    height: 200px;
 }
