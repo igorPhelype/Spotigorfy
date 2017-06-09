@@ -1,11 +1,43 @@
 import React, {Component} from 'react';
+import SpotifyWebApi from 'spotify-web-api-js';
+import _ from 'lodash';
+import ArtistsSearchListItem from './artist_search_list_item'
 
 class ArtistsSearchList extends Component{
     constructor(props){
         super(props);
-        console.log("Search List: ", props.artists);
+        this.state={artistsList: [], term: props.term};
+        const searchArtist = _.debounce(() => {this.searchArtist();}, 400);
+        searchArtist();    
+    }
+    searchArtist(){
+        var spotifyApi = new SpotifyWebApi();
+        spotifyApi.setAccessToken(this.props.access_token);
+        spotifyApi.searchArtists(this.state.term, {limit: '2', type: 'artist'},
+            (err, data) => {
+                if(err){
+                    console.log(err);
+                }
+                if(data){
+                    this.setState({artistsList: data.artists.items});
+                }
+            }
+        );
     }
     render(){
+        const artistsList = this.state.artistsList.map((artist) => {
+            if(!artist.images[0]){
+                artist.images[0] = "";
+            }
+            return(
+                <ArtistsSearchListItem
+                    key={artist.id}
+                    current_artist={artist}
+                    onArtistSelect={this.props.onArtistSelect}
+                    artist_image_url={artist.images[0].url}
+                />
+            );
+        });
         return(
             <div>
                 <ul className="overflow-list">
@@ -18,6 +50,7 @@ class ArtistsSearchList extends Component{
                             </div>
                         </div>
                     </li>
+                    {artistsList}
                 </ul>
             </div>
         );
