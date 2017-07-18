@@ -6,7 +6,8 @@
 
     Web app simples escrito em ReactJs usando a API do Spotify na pesquisa de artistas e listagem de albuns e musicas
 
-<h2 style="word-wrap: break-word">Objetivos:</h2>
+<h2>Objetivos:</h2>
+<div style="word-wrap: break-word">
 
     1) Obter logo na primeira página todos os álbuns do artista “John Williams”. Para cada album exibir o título, capa e algo mais que você achar relevante.
 
@@ -14,6 +15,7 @@
 
     3) Permitir uma busca para localizar artistas. Deverá ser incluído um input na pagina inicial onde o usuário irá digitar algo e clicar em “buscar”, momento esse que serão listados os artistas encontrados. Clicando em um deles abrirá a lista de discos do artista, tal como no item 1.
 
+</div>
 <h2>
     <a href="https://igorphelype.github.io/Spotigorfy/">Veja em ação</a>
 </h2>
@@ -24,7 +26,7 @@
 
     Simple ReactJs WebApp using the Spotify API on the search for artists and listing of albums and tracks.
 
-<h2 style="word-wrap: break-word">Objectives:</h2>
+<h2>Objectives:</h2>
 
     1) Obtain all the albums of the artist "John Williams" on the first page. For each album show the title, cover and anything else you find relevant.
 
