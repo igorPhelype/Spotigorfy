@@ -93,20 +93,17 @@ class App extends Component{
         const setArtistSearchTerm = _.debounce((term) => {this.setArtistSearchTerm(term)}, 300);
         return (
             <div>
-                <nav>
-                    <SearchBar onSearchTermChange={setArtistSearchTerm}/>
-                </nav>
                 <div className="container">
+                    <div style={{paddingBottom: 20, paddingTop: 20, textAlign: 'center'}}>
+                        <SearchBar onSearchTermChange={setArtistSearchTerm}/>
+                    </div>
                     <ArtistsSearchList onArtistSelect={current_artist => this.setArtist(current_artist)} key={this.state.term} access_token={access_token} term={this.state.term}/>
-                    
                     <ArtistInformation key={this.state.current_artist.id} artist_image_url={this.state.artist_image_url} current_artist={this.state.current_artist}/>
-                    
                     <AlbumList 
                         key={this.state.current_artist}
                         onAlbumSelect={selected_album_id => this.setState({selected_album_id})}
                         albums={this.state.albums}
                     />
-                    
                     <TrackList
                         key={this.state.selected_album_id}
                         album_id={this.state.selected_album_id}
